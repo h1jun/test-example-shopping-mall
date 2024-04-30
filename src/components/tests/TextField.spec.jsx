@@ -24,8 +24,38 @@ it('className prop으로 설정한 css class가 적용된다.', async () => {
 
   // className이란 내부 props이나 state 값을 검증 (X)
   // 렌더링되는 DOM 구조가 올바르게 변경되었는지 확인(O) -> 최종적으로 사용자가 보는 결과는 DOM이기 때문에 이를 검증
-  // vitest의 expect 함수를 사용하여 기대 결과를 검증
-  expect(screen.getByPlaceholderText('텍스트를 입력해 주세요.')).toHaveClass(
-    'my-class',
-  ); // 3. Assert
+  // vitest의 ``expect`` 함수를 사용하여 기대 결과를 검증
+
+  const textInput = screen.getByPlaceholderText('텍스트를 입력해 주세요.');
+  expect(textInput).toHaveClass('my-class'); // 3. Assert
+});
+
+describe('placeholder', () => {
+  // it함수 내에서는 내가 바라는 기대 결과를 정의한다.
+  // 즉, 검증하고자 하는 대상의 최종 결과 상태를 예상하여 정의한다.
+  // 테스트 설명과 동작에 대한 기대 결과를 검증하는 코드를 작성
+  // it함수는 test함수의 alias이다.
+  // it 함수로 작성하는 경우 Should~~로 시작하고, test함수로 작성하면 if~~로 시작하여 작성한다.
+  // describe는 test 단위를 그룹핑 할 때 사용
+  it('기본 placeholder "텍스트를 입력해 주세요."가 노출된다.', async () => {
+    // 기대 결과 === 실제 경과 -> 성공
+    // 기대 결과 !== 실제 경과 -> 실패
+    await render(<TextField />); // 1. Arrange
+
+    const textInput = screen.getByPlaceholderText('텍스트를 입력해 주세요.');
+
+    // 단언(assertion) -> 테스트가 통과하기 위한 조건을 서술할 때 사용 -> 검증 실행
+    // 기대 결과를 검증하기 위해 사용하는 사용되는 api들을 Matcher라고 한다. => https://vitest.dev/api/expect
+    // toBeInTheDocument, toHaveClass 등 DOM관련 matcher느 vitest에서 제공하는 api가 아니다.
+    // setupTests.js 파일에 import '@testing-library/jest-dom';를 추가하면 toBeInTheDocument()를 사용할 수 있다.
+    expect(textInput).toBeInTheDocument(); // 3. Assert
+  });
+
+  it('placeholder prop에 따라 placeholder가 변경된다.', async () => {
+    await render(<TextField placeholder="상품명을 입력해 주세요." />);
+
+    const textInput = screen.getByPlaceholderText('상품명을 입력해 주세요.');
+
+    expect(textInput).toBeInTheDocument();
+  });
 });

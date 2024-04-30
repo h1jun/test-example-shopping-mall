@@ -4,6 +4,22 @@ import React from 'react';
 import TextField from '@/components/TextField';
 import render from '@/utils/test/render';
 
+beforeEach(() => {
+  console.log('root - beforeEach');
+});
+
+beforeAll(() => {
+  console.log('root - beforeAll');
+});
+
+afterEach(() => {
+  console.log('root - afterEach');
+});
+
+afterAll(() => {
+  console.log('root - afterAll');
+});
+
 it('className prop으로 설정한 css class가 적용된다.', async () => {
   // AAA 패턴
   // 1. Arrange :  테스트를 위한 환경 만들기 => 컴퍼넌트를 렌더링하는 코드들이 포함
@@ -31,6 +47,9 @@ it('className prop으로 설정한 css class가 적용된다.', async () => {
 });
 
 describe('placeholder', () => {
+  beforeEach(() => {
+    console.log('placeholder - beforeEach');
+  });
   // it함수 내에서는 내가 바라는 기대 결과를 정의한다.
   // 즉, 검증하고자 하는 대상의 최종 결과 상태를 예상하여 정의한다.
   // 테스트 설명과 동작에 대한 기대 결과를 검증하는 코드를 작성

@@ -1,3 +1,4 @@
+// pick: 특정 객체에서 인자로 전달받은 키에 해당하는 값들을 조회하도록 도와주는 util 함수
 export const pick = (obj, ...propNames) => {
   if (!obj || !propNames) {
     return {};

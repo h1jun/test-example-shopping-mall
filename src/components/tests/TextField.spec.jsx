@@ -88,8 +88,8 @@ describe('placeholder', () => {
     await user.click(textInput);
 
     expect(textInput).toHaveStyle({
-      borderWidth: 2,
-      borderColor: 'rgb(25, 118, 210}',
+      borderWidth: '2px',
+      borderColor: 'rgb(25, 118, 210)',
     });
   });
 });

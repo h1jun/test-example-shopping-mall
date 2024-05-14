@@ -6,6 +6,10 @@ import { NO_COUPON_ID } from '@/constants';
 import ShippingInformationForm from '@/pages/purchase/components/ShippingInformationForm';
 import render from '@/utils/test/render';
 
+// ShippingInformationForm만 따로 테스트하기 위해서는 FormProvider로 감싸진 형태로 테스트를 해야 한다.
+// react-hook-form의 FormProvider로 랩핑된 형태의 테스트 컴포넌트
+// 쇼핑몰 앱에서 유효성 검증에 대한 동작을 react-hook-form을 사용하여 구현
+// -> react-hook-form과 연동된 폼 필드의 동작을 확인하기 위한 일종의 모의 컴포넌트
 const TestForm = props => {
   const methods = useForm({
     defaultValues: {
